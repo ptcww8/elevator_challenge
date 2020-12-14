@@ -7,7 +7,7 @@ class Elevator
   
   def initialize()
     @direction = Elevator::DIRECT[:up]
-    @current_floor = 0
+    @current_floor = -1
   end
 
   def self.add_floor(new_floor)
@@ -21,7 +21,7 @@ class Elevator
   
   
   
-  def next_floor()
+  def next_floor
     elev_array = @@request_set.to_a
     floor = nil
     if @direction == Elevator::DIRECT[:up]
@@ -62,4 +62,10 @@ class Elevator
 
 end
 
-
+#elA = Elevator.new
+#elB = Elevator.new
+#elA.current_floor
+#Elevator.add_floor(5)
+#Elevator.add_floor(5)
+#Elevator.add_floor(5)
+ 
