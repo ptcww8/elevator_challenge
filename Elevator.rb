@@ -1,18 +1,30 @@
+require 'set'
 class Elevator
   attr_reader :current_floor
   attr_accessor :direction
-  DIRECTION = {:up => 0, :down => 1}
+  DIRECT = {:up => 0, :down => 1}
+  @@request_set = SortedSet.new
   
   def initialize()
-    @direction = Elevator::DIRECTION[:up]
+    @direction = Elevator::DIRECT[:up]
     @current_floor = 0
+  end
+
+  def self.add_floor(new_floor)
+    @@request_set << new_floor
+    @@request_set
+  end
+  
+  def self.get_sorted_set
+    @@request_set 
   end
   
   
-  def next_floor(elev_set)
-    elev_array = elev_set.to_a
+  
+  def next_floor()
+    elev_array = @@request_set.to_a
     floor = nil
-    if @direction == Elevator::DIRECTION[:up]
+    if @direction == Elevator::DIRECT[:up]
       if elev_array.last > @current_floor
         floor = elev_array[@current_floor + 1]
       else
@@ -34,7 +46,7 @@ class Elevator
         puts error.backtrace 
       end
     else
-      elev_set.delete(floor)
+      @@request_set.delete(floor)
     end
 
     return (floor == nil) ? -1 : floor
@@ -42,7 +54,9 @@ class Elevator
 
 
   def current_floor=(value) #  setter
-
+    @direction =  @current_floor > value ? Elevator::DIRECT[:down] : Elevator::DIRECT[:up]
+    @current_floor = value
+    sleep(3)
   end
 
 
