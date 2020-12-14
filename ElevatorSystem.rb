@@ -56,15 +56,16 @@ class ElevatorSystem
       begin
         #Read input from console
         puts"Which floor are you on?"
-        floor_number = $stdin.gets.chomp  
+        floor_number = $stdin.gets.chomp
+        puts"Which floor are you  going to?"
+        end_floor_number = $stdin.gets.chomp
       rescue => error
         error.backtrace 
       end
       
       if is_valid_floor_number?(floor_number)
         puts "User Pressed : " + floor_number
-        #elevator = get_closest_elevator(floor_number)
-        add_floor(floor_number.to_i)
+        elevator_request(floor_number, end_floor_number)
         
       else
         puts "Floor Request Invalid : " + floor_number
