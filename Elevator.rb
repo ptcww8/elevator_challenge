@@ -22,6 +22,7 @@ class Elevator
   
   
   def next_floor
+    #This function is going to give you the next floor the elevator is going to
     elev_array = @@request_set.to_a
     floor = nil
     if @direction == Elevator::DIRECT[:up]

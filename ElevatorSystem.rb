@@ -19,6 +19,7 @@ class ElevatorSystem
   end
   
   def process_request(floor_number, direction)
+    #This function is going to be added to a thread to process inputs received
     while true
       elevator = get_closest_elevator(floor_number, direction)
       floor = elevator.next_floor
@@ -50,6 +51,7 @@ class ElevatorSystem
   
   
   def listening_for_request
+    #This function is going to be added to a thread to listen for inputs
     
     while true
       floor_number = nil
